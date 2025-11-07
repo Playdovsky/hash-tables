@@ -9,6 +9,7 @@ def menu():
         case 1:
             chain = chaining.Chaining()
             chain.hash_operations()
+            menu()
         case 2:
             pass
         case 3:

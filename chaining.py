@@ -3,7 +3,8 @@ hash_table = []
 
 class Chaining:
     def __init__(self):
-        self.hash_table_init()
+        if not hash_table:
+            self.hash_table_init()
     
     def hash_table_init(self):
         global hash_table
@@ -23,13 +24,13 @@ class Chaining:
             case 1:
                 self.display()
             case 2:
-                self.insert_new_elem()
+                self.insert()
             case 3:
-                pass
+                self.find()
             case 4:
-                pass
+                self.delete()
             case 5:
-                pass
+                return
             case 6:
                 exit()
             case _:
@@ -42,10 +43,10 @@ class Chaining:
             print(f"{i} | {hash_table[i]}")
             i += 1
         
-        input("Press any key to continue...")
+        input("Press any key to continue...\n")
         self.hash_operations()
     
-    def insert_new_elem(self):
+    def insert(self):
         global hash_table
         
         print("Enter number for insertion")
@@ -53,5 +54,43 @@ class Chaining:
         modulo = number % len(hash_table)
         hash_table[modulo].append(number)
         
-        input("Press any key to continue...")
+        input("Press any key to continue...\n")
+        self.hash_operations()
+        
+    def find(self):
+        global hash_table
+        
+        print("What number to search for?")
+        number = int(input())
+        modulo = number % len(hash_table)
+        checked_array = hash_table[modulo]
+        
+        for item in checked_array:
+            if item == number:
+                print(f"Number has been found under hash table index: {modulo}")
+                break
+        else:
+            print("Number has not been found")
+        
+        input("Press any key to continue...\n")
+        self.hash_operations()
+    
+    def delete(self):
+        global hash_table
+        
+        print("What number do you want to delete?")
+        number = int(input())
+        modulo = number % len(hash_table)
+        checked_array = hash_table[modulo]
+        
+        for item in checked_array:
+            if item == number:
+                checked_array.remove(number)
+                print(f"Number has been deleted from hash table index: {modulo}")
+                found = True
+                break
+        else:
+            print("Number has not been found, therefore can't be deleted")
+        
+        input("Press any key to continue...\n")
         self.hash_operations()
