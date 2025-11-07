@@ -1,5 +1,5 @@
 
-hash_table = {}
+hash_table = []
 
 class Chaining:
     def __init__(self):
@@ -10,12 +10,12 @@ class Chaining:
         i = 0
         
         while i < 10:
-            hash_table.update({i:[]})
+            hash_table.append([])
             i += 1
 
     def hash_operations(self):
         print("What do you want to do?")
-        print("1. Display dictionary\n2. Insert new element\n3. Find existing element\n4. Delete element\n5. Exit to menu\n6. Exit")
+        print("1. Display all hash tables\n2. Insert new element\n3. Find existing element\n4. Delete element\n5. Exit to menu\n6. Exit")
         option = int(input())
         print()
         
@@ -37,9 +37,12 @@ class Chaining:
                 self.hash_operations()
 
     def display(self):
-        for k, v in hash_table.items():
-            print(f"{k} | {v}")
+        i = 0
+        while i < len(hash_table):
+            print(f"{i} | {hash_table[i]}")
+            i += 1
         
+        input("Press any key to continue...")
         self.hash_operations()
     
     def insert_new_elem(self):
@@ -47,9 +50,8 @@ class Chaining:
         
         print("Enter number for insertion")
         number = int(input())
-        v = hash_table.get(number % len(hash_table))
-        v.append(number)
-        hash_table.update({number % len(hash_table):v})
-        print(f"Number {number} added")
+        modulo = number % len(hash_table)
+        hash_table[modulo].append(number)
         
+        input("Press any key to continue...")
         self.hash_operations()
