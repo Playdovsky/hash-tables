@@ -1,8 +1,10 @@
 import chaining
+import open_addressing
 
 def menu():
+    print("\nMAIN MENU")
     print("Please select type of hash tables")
-    print("1. Chaining\n2. Open addressing\n3. Exit")
+    print("   1. Chaining\n   2. Open addressing\n   3. Exit\n")
     option = int(input())
     
     match option:
@@ -11,11 +13,13 @@ def menu():
             chain.hash_operations()
             menu()
         case 2:
-            pass
+            open_addr = open_addressing.OpenAddressing()
+            open_addr.hash_operations()
+            menu()
         case 3:
             exit()
         case _:
-            print("Please select valid option from the list")
+            print("Please select valid option from the list\n")
             menu()
 
 menu()
