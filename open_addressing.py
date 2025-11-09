@@ -1,6 +1,7 @@
+from collision_avoidance import CollisionAvoidance
 from marker import Marker
 
-class OpenAddressing:
+class OpenAddressing(CollisionAvoidance):
     __hash_table = []
 
     def __init__(self):
@@ -55,12 +56,12 @@ class OpenAddressing:
         except Exception as e:
             print(f"An error occurred: {e}")
             self.display()
-    
+
     def insert(self):
         try:
             print("Enter number for insertion")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             i = 0
 
             while i < len(self.__hash_table):
@@ -89,7 +90,7 @@ class OpenAddressing:
         try:
             print("What number to search for?")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             i = 0
 
             while i < len(self.__hash_table):
@@ -118,7 +119,7 @@ class OpenAddressing:
         try:
             print("What number do you want to delete?")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             i = 0
 
             while i < len(self.__hash_table):

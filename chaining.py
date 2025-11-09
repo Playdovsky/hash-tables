@@ -1,4 +1,6 @@
-class Chaining:
+from collision_avoidance import CollisionAvoidance
+
+class Chaining(CollisionAvoidance):
     __hash_table = []
     
     def __init__(self):
@@ -61,12 +63,12 @@ class Chaining:
         except Exception as e:
             print(f"An error occurred: {e}")
             self.display()
-    
+
     def insert(self):
         try:
             print("Enter number for insertion")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             self.__hash_table[modulo].append(number)
             
             input("Press any key to continue...\n")
@@ -83,7 +85,7 @@ class Chaining:
         try:    
             print("What number to search for?")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             checked_array = self.__hash_table[modulo]
             
             for item in checked_array:
@@ -107,7 +109,7 @@ class Chaining:
         try:
             print("What number do you want to delete?")
             number = int(input())
-            modulo = number % len(self.__hash_table)
+            modulo = super().h(number, len(self.__hash_table))
             checked_array = self.__hash_table[modulo]
             
             for item in checked_array:
