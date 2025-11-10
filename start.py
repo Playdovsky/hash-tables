@@ -1,5 +1,6 @@
 from chaining import Chaining
 from open_addressing import OpenAddressing
+from complexity import Complexity
 
 class Start:
     def __init__(self):
@@ -10,7 +11,7 @@ class Start:
             while True:
                 print("\n===== MAIN MENU =====")
                 print("Please select type of hash tables")
-                print(" 1. Chaining\n 2. Open addressing\n 3. Exit\n")
+                print(" 1. Chaining\n 2. Open addressing\n 3. Draw complexity chart\n 4. Exit\n")
                 option = int(input())
                 
                 match option:
@@ -21,6 +22,10 @@ class Start:
                         print("\n===== OPEN ADDRESSING METHOD =====")
                         self.run_demonstration(OpenAddressing())
                     case 3:
+                        length = int(input("Enter hash table length: "))
+                        num_trials = int(input("Enter number of search trials: "))
+                        Complexity.draw_chart(length, num_trials)
+                    case 4:
                         exit()
                     case _:
                         print("Please select valid option from the list\n")
@@ -36,7 +41,7 @@ class Start:
     def run_demonstration(self, hashing_type):
         try:
             while True:
-                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n 5. Back to menu\n")
+                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n6. Back to menu\n")
                 option = int(input())
 
                 match option:

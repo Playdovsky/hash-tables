@@ -4,12 +4,10 @@ class Chaining(CollisionAvoidance):
     def __init__(self, length=10):
         i = 0
         self._hash_table = []
+        self.comparisons = 0
         while i < length:
             self._hash_table.append([])
             i += 1
-        
-        self.comparisons = 0
-
 
     def display(self):
         i = 0
@@ -30,6 +28,7 @@ class Chaining(CollisionAvoidance):
         checked_array = self._hash_table[modulo]
         
         for item in checked_array:
+            self.comparisons += 1
             if item == number:
                 return True
         
