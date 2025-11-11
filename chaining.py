@@ -4,7 +4,8 @@ class Chaining(CollisionAvoidance):
     def __init__(self, length=10):
         self.initialize_hash_table(length)
         self.comparisons = 0
-
+        self.total_elements = 0
+        self._is_rehashing = False
 
     def initialize_hash_table(self, length):
         self._hash_table = []
@@ -28,6 +29,7 @@ class Chaining(CollisionAvoidance):
         
         modulo = super().h(number, len(self._hash_table))
         self._hash_table[modulo].append(number)
+        self.total_elements += 1
         return True
         
     def find(self, number):    
@@ -47,12 +49,16 @@ class Chaining(CollisionAvoidance):
             return False
         
         checked_array.remove(number)
+        self.total_elements -= 1
         return True
-    
+
     def rehash(self, new_length):
+        self._is_rehashing = True
         old_hash_table = self._hash_table
         self.initialize_hash_table(new_length)
 
         for checked_array in old_hash_table:
             for number in checked_array:
                 self.insert(number)
+        
+        self._is_rehashing = False

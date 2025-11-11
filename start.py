@@ -75,13 +75,10 @@ class Start:
                         return
                     case _:
                         print("Please select valid option from the list\n")
-                        self.run_demonstration(hashing_type)
 
         except ValueError:
             print("[ERROR] Please select valid option from the list\n")
-            self.run_demonstration()
         except Exception as e:
             print(f"[ERROR] {e}")
-            self.run_demonstration()
 
 self_start = Start()
