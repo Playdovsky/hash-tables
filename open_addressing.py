@@ -16,6 +16,9 @@ class OpenAddressing(CollisionAvoidance):
         return result
 
     def insert(self, number):
+        if self.find(number) is not None:
+            return False
+        
         modulo = super().h(number, len(self._hash_table))
         i = 0
         while i < len(self._hash_table):
@@ -35,28 +38,19 @@ class OpenAddressing(CollisionAvoidance):
             index = (modulo + i) % len(self._hash_table)
             self.comparisons += 1
             if self._hash_table[index] == Marker.Empty:
-                return False
+                return None
             
             if self._hash_table[index] == number:
-                return True
+                return index
 
             i += 1
         
-        return False
+        return None
     
     def delete(self, number):
-        modulo = super().h(number, len(self._hash_table))
-        i = 0
-        while i < len(self._hash_table):
-            index = (modulo + i) % len(self._hash_table)
-            self.comparisons += 1
-            if self._hash_table[index] == Marker.Empty:
-                return False
-            
-            if self._hash_table[index] == number:
-                self._hash_table[index] = Marker.Deleted
-                return True
-
-            i += 1
+        index = self.find(number)
+        if index is None:
+            return False
         
-        return False
+        self._hash_table[index] = Marker.Deleted
+        return True

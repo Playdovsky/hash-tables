@@ -41,7 +41,7 @@ class Start:
     def run_demonstration(self, hashing_type):
         try:
             while True:
-                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n6. Back to menu\n")
+                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n 5. Back to menu\n")
                 option = int(input())
 
                 match option:
@@ -52,7 +52,7 @@ class Start:
                         if hashing_type.insert(number):
                             print(f"Number {number} has been inserted successfully\n")
                         else:
-                            print(f"Hash table full. Number {number} could not be inserted\n")
+                            print(f"Duplicate or hash table full. Number {number} could not be inserted\n")
                     case 3:
                         number = int(input("Enter number to find: "))
                         if hashing_type.find(number):
