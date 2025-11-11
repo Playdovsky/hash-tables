@@ -54,3 +54,15 @@ class OpenAddressing(CollisionAvoidance):
         
         self._hash_table[index] = Marker.Deleted
         return True
+    
+    def rehash(self, new_length):
+        empty_and_deleted = self._hash_table.count(Marker.Deleted) + self._hash_table.count(Marker.Empty)
+        if new_length < len(self._hash_table) - empty_and_deleted:
+            raise Exception("New length too small to accommodate existing elements")
+        
+        old_hash_table = self._hash_table
+        self._hash_table = [Marker.Empty] * new_length
+
+        for item in old_hash_table:
+            if item not in (Marker.Empty, Marker.Deleted):
+                self.insert(item)

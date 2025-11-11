@@ -6,13 +6,17 @@ class CollisionAvoidance(ABC):
         return x % table_len
 
     @abstractmethod
-    def insert(self):
+    def insert(self, number):
         pass
 
     @abstractmethod
-    def find(self):
+    def find(self, number):
         pass
 
     @abstractmethod
-    def delete(self):
+    def delete(self, number):
+        pass
+
+    @abstractmethod
+    def rehash(self, new_length):
         pass

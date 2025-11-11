@@ -17,10 +17,12 @@ class Start:
                 match option:
                     case 1:
                         print("\n===== CHAINING METHOD =====")
-                        self.run_demonstration(Chaining())
+                        length = int(input("Enter hash table length: "))
+                        self.run_demonstration(Chaining(length))
                     case 2:
                         print("\n===== OPEN ADDRESSING METHOD =====")
-                        self.run_demonstration(OpenAddressing())
+                        length = int(input("Enter hash table length: "))
+                        self.run_demonstration(OpenAddressing(length))
                     case 3:
                         length = int(input("Enter hash table length: "))
                         num_trials = int(input("Enter number of search trials: "))
@@ -41,7 +43,7 @@ class Start:
     def run_demonstration(self, hashing_type):
         try:
             while True:
-                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n 5. Back to menu\n")
+                print(" 1. Display table\n 2. Insert\n 3. Find\n 4. Delete\n 5. Rehash\n 6. Back to menu\n")
                 option = int(input())
 
                 match option:
@@ -66,10 +68,14 @@ class Start:
                         else:
                             print(f"Number {number} not found, therefore cannot be deleted\n")
                     case 5:
+                        new_length = int(input("Enter new hash table length: "))
+                        hashing_type.rehash(new_length)
+                        print(f"Hash table rehashed to new length {new_length} successfully\n")
+                    case 6:
                         return
                     case _:
                         print("Please select valid option from the list\n")
-                        self.run_demonstration()
+                        self.run_demonstration(hashing_type)
 
         except ValueError:
             print("[ERROR] Please select valid option from the list\n")
